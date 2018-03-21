@@ -2,6 +2,7 @@ package es.fpdual.eadmin.eadmin.modelo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -35,13 +36,13 @@ public class DocumentoTest {
 	public void deberiaDevolverTrueSiTienenIgualCodigo() {
 		final Documento prueba2 = new Documento(CODIGO_DOCUMENTO, null, null, null, null);
 		
-		final Boolean resultado = prueba2.equals(prueba);
+		Boolean resultado = prueba2.equals(prueba);
 		assertTrue(resultado);
 	}
 	
 	@Test
 	public void deberiaDevolverFalseSiNoTienenIgualCodigo() {
-		final Documento prueba2 = new Documento(5, null, null, null, null);
+		Documento prueba2 = new Documento(5, null, null, null, null);
 		
 		final Boolean resultado = prueba2.equals(prueba);
 		assertFalse(resultado);
@@ -50,15 +51,20 @@ public class DocumentoTest {
 	@Test
 	public void deberiaDevolverFalseSiNoEsTipoDocumento() {
 		
-		final Boolean resultado = prueba.equals(new String());
+		Boolean resultado = prueba.equals(new String());
 		
 		assertFalse(resultado);
 	}
 	
 	@Test
-	public void deberiaDevlverHasCodeDelCodigo() {
+	public void deberiaDevolverHasCodeDelCodigo() {
 		final int resultado = prueba.hashCode();
 		
 		assertEquals(CODIGO_DOCUMENTO.hashCode(), resultado);
+	}
+	
+	@Test
+	public void noDeberiaDevolverNulo() {
+		assertNotNull(prueba.toString());
 	}
 }
