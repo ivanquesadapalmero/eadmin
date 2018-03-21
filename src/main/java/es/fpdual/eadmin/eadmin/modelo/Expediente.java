@@ -3,45 +3,24 @@ package es.fpdual.eadmin.eadmin.modelo;
 import java.util.List;
 import java.util.Date;
 
-public class Expediente {
-	
-	private Integer codigo;
-	private String nombre;
-	private Date fechaCreacion;
+public class Expediente extends ModeloBaseAdministracionElectronica {
+
 	private Date fechaArchivado;
-	private Boolean publico;
 	private EstadoExpediente estado;
 	private List<Documento> documentos;
-	
-	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Date fechaArchivado, Boolean publico,
-		EstadoExpediente estado, List documentos) {
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.fechaCreacion = fechaCreacion;
+	private Boolean publico;
+
+	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Boolean publico, Date fechaArchivado,
+			EstadoExpediente estado, List<Documento> documentos) {
+		super(codigo, nombre, fechaCreacion);
 		this.fechaArchivado = fechaArchivado;
-		this.publico = publico;
 		this.estado = estado;
 		this.documentos = documentos;
-	}
-
-	public Integer getCodigo() {
-		return codigo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public Date getFechaCreacion() {
-		return fechaCreacion;
+		this.publico = publico;
 	}
 
 	public Date getFechaArchivado() {
 		return fechaArchivado;
-	}
-
-	public Boolean getPublico() {
-		return publico;
 	}
 
 	public EstadoExpediente getEstado() {
@@ -52,31 +31,34 @@ public class Expediente {
 		return documentos;
 	}
 
+	public Boolean getPublico() {
+		return publico;
+	}
+
 	@Override
 	public int hashCode() {
-		return codigo.hashCode() + nombre.hashCode() + fechaCreacion.hashCode() + fechaArchivado.hashCode() + 
-				publico.hashCode() + estado.hashCode();
+		return codigo.hashCode() + nombre.hashCode() + fechaCreacion.hashCode() + fechaArchivado.hashCode()
+				+ estado.hashCode() + documentos.hashCode() + publico.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		if (obj instanceof Expediente) {
-			return codigo.equals(((Expediente) obj).getCodigo()) && nombre.equals(((Expediente) obj).getNombre()) &&
-					fechaCreacion.equals(((Expediente) obj).getFechaCreacion()) && fechaArchivado.equals(((Expediente) obj).getFechaArchivado())
-					&& publico.equals(((Expediente) obj).getPublico()) && estado.equals(((Expediente) obj).getEstado());
-						
+			return codigo.equals(((Expediente) obj).getFechaArchivado())
+					&& nombre.equals(((Expediente) obj).getNombre())
+					&& fechaCreacion.equals(((Expediente) obj).getFechaCreacion())
+					&& fechaArchivado.equals(((Expediente) obj).getFechaArchivado())
+					&& estado.equals(((Expediente) obj).getEstado())
+					&& documentos.equals(((Expediente) obj).getDocumentos())
+					&& publico.equals(((Expediente) obj).getPublico());
 		}
 		return false;
 	}
 
 	@Override
 	public String toString() {
-		return "Expediente con código " +codigo;
+		return "Expediente con código " + super.getCodigo();
 	}
-	
-	
-	
-	
-	
+
 }
