@@ -64,7 +64,7 @@ public class DocumentoTest {
 	}
 	
 	@Test
-	public void noDeberiaDevolverNulo() {
+	public void noDeberiaDevolverNuloToString() {
 		assertNotNull(prueba.toString());
 	}
 }
