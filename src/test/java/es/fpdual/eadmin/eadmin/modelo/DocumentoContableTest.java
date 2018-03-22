@@ -19,8 +19,8 @@ public class DocumentoContableTest {
 
 	@Before
 	public void inicializarCadaTest() {
-		docContable = new DocumentoContable(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO,
-				EstadoDocumento.ACTIVO, IMPORTE, DNI_INTERESADO);
+		docContable = new DocumentoContable(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, EstadoDocumento.ACTIVO,
+				DOCUMENTO_PUBLICO, IMPORTE, DNI_INTERESADO);
 	}
 
 	@Test

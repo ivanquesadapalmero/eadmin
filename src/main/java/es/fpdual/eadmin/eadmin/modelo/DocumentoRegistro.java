@@ -21,6 +21,8 @@ public class DocumentoRegistro extends Documento {
 	public String getCodigoRegistro() {
 		return codigoRegistro;
 	}
+	
+	
 
 	@Override
 	public String toString() {
