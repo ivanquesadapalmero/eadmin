@@ -9,6 +9,8 @@ import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.sql.Date;
+
 public class ServicioDocumentoImplTest {
 
 	private ServicioDocumento servicioDocumento;
@@ -36,14 +38,18 @@ public class ServicioDocumentoImplTest {
 	@Test
 	public void deberiaModificarUnDocumento() {
 		when(DOCUMENTO.getCodigo()).thenReturn(1);
+		when(DOCUMENTO.getFechaCreacion()).thenReturn(new Date(1/1/2000));
+		when(DOCUMENTO.getNombre()).thenReturn("nombre");
 		final Documento resultado = this.servicioDocumento.modificarDocumento(DOCUMENTO);
-		verify(this.repositorioDocumento).modificarDocumento(DOCUMENTO);
-		assertEquals(resultado, DOCUMENTO);
+		verify(this.repositorioDocumento).modificarDocumento(any());
+		assertEquals(Integer.valueOf(1), resultado.getCodigo());
+		assertEquals("nombre", resultado.getNombre());
+		assertNotEquals(resultado.getFechaCreacion(), DOCUMENTO.getFechaCreacion());
 	}
 
 	@Test
 	public void deberiaElimirarUnDocumento() {
-		when(DOCUMENTO.getCodigo()).thenReturn(1);
+		
 		this.servicioDocumento.eliminarDocumento(DOCUMENTO.getCodigo());
 		verify(this.repositorioDocumento).eliminarDocumento(DOCUMENTO.getCodigo());
 	}
