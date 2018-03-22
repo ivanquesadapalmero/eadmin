@@ -1,10 +1,9 @@
 package es.fpdual.eadmin.eadmin.repositorio.impl;
 
-import java.util.ArrayList;
+import static org.junit.Assert.*;
 import java.util.Date;
-import java.util.List;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
@@ -17,29 +16,32 @@ public class ImplementacionDeRepositorioTest {
 	private static final Date FECHA_CREACION = new Date();
 	private static final boolean PUBLICO = true;
 	private static final EstadoDocumento ESTADO_DOCUMENTO = EstadoDocumento.ACTIVO;
-	private Documento doc;
-	private List<Documento> documentos; 
-	private Im
-	
-	@BeforeClass
-	public void crearListaYDocumento() {
-		doc = new Documento(CODIGO, NOMBRE, FECHA_CREACION, PUBLICO, ESTADO_DOCUMENTO);
-		documentos = new ArrayList<>();
+	private Documento documento = new Documento(CODIGO, NOMBRE, FECHA_CREACION, PUBLICO, ESTADO_DOCUMENTO);
+	private ImplementacionDeRepositorio repositorio;
+
+	@Before
+	public void inicilizarEnCadaTest() {
+		repositorio = new ImplementacionDeRepositorio();
 	}
 
 	@Test
 	public void testAltaDocumento() {
-		ImplementacionDeRepositorio.altaDocumento(doc);
-		documentos.add(doc);
+		repositorio.altaDocumento(documento);
+		assertSame(documento, repositorio.getDocumentos().get(0));
 	}
-	
+
 	@Test
 	public void modificarDocumento() {
-		
+		repositorio.getDocumentos().add(documento);
+		Documento documento2 = new Documento(CODIGO, "documento2", FECHA_CREACION, PUBLICO, ESTADO_DOCUMENTO);
+		repositorio.modificarDocumento(documento2);
+		assertEquals(documento, documento2);
 	}
-	
+
 	@Test
-	public void eliminarDocumento() {
-		
+	public void testEliminarDocumento() {
+		repositorio.getDocumentos().add(documento);
+		repositorio.eliminarDocumento(documento.getCodigo());
+		assertTrue(repositorio.getDocumentos().isEmpty());
 	}
 }
