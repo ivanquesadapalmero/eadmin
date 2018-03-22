@@ -1,5 +1,6 @@
 package es.fpdual.eadmin.eadmin.modelo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class DocumentoPropuesta extends Documento {
@@ -8,9 +9,9 @@ public class DocumentoPropuesta extends Documento {
 	private Integer ejercicio;
 	private String grupoPolitico;
 
-	public DocumentoPropuesta(Integer codigo, String nombre, Date fechaCreacion, Boolean publico,
-			EstadoDocumento estado, Integer codigoPropuesta, Integer ejercicio, String grupoPolitico) {
-		super(codigo, nombre, fechaCreacion, publico, estado);
+	public DocumentoPropuesta(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico,
+			EstadoDocumento estado, Integer codigoPropuesta, Integer ejercicio, String grupoPolitico, BigDecimal codigoVerificacion) {
+		super(codigo, nombre, fechaCreacion, fechaModificacion, publico, estado, codigoVerificacion);
 		this.codigoPropuesta = codigoPropuesta;
 		this.ejercicio = ejercicio;
 		this.grupoPolitico = grupoPolitico;

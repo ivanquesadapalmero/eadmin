@@ -12,11 +12,12 @@ public class ModeloBaseAdministracionElectronicaTest {
 	private static final Integer CODIGO = 1;
 	private static final String NOMBRE = "Prueba";
 	private static final Date FECHA_CREACION = new Date();
+	private static final Date FECHA_MODIFICACION = new Date();
 	private ModeloBaseAdministracionElectronicaFake documento;
 
 	@BeforeClass
 	public void crearObjeto() {
-		documento = new ModeloBaseAdministracionElectronicaFake(CODIGO, NOMBRE, FECHA_CREACION);
+		documento = new ModeloBaseAdministracionElectronicaFake(CODIGO, NOMBRE, FECHA_CREACION, FECHA_MODIFICACION);
 	}
 
 	@Test
@@ -27,8 +28,8 @@ public class ModeloBaseAdministracionElectronicaTest {
 
 	class ModeloBaseAdministracionElectronicaFake extends ModeloBaseAdministracionElectronica {
 
-		public ModeloBaseAdministracionElectronicaFake(Integer codigo, String nombre, Date fechaCreacion) {
-			super(codigo, nombre, fechaCreacion);
+		public ModeloBaseAdministracionElectronicaFake(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion) {
+			super(codigo, nombre, fechaCreacion, fechaModificacion);
 		}
 
 	}

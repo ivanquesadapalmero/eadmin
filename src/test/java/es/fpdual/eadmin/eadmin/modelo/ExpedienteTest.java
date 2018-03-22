@@ -35,7 +35,7 @@ import org.junit.Before;
 		
 		@Test
 		public void deberiaDevolverTrueSiTienenIgualCodigo() {
-			final Documento prueba2 = new Documento(CODIGO_DOCUMENTO, null, null, null, null);
+			final Documento prueba2 = new Documento(CODIGO_DOCUMENTO, null, null, null, null, null);
 			
 			final Boolean resultado = prueba2.equals(prueba);
 			assertTrue(resultado);
@@ -43,7 +43,7 @@ import org.junit.Before;
 		
 		@Test
 		public void deberiaDevolverFalseSiNoTienenIgualCodigo() {
-			final Documento prueba2 = new Documento(5, null, null, null, null);
+			final Documento prueba2 = new Documento(5, null, null, null, null, null);
 			
 			final Boolean resultado = prueba2.equals(prueba);
 			assertFalse(resultado);

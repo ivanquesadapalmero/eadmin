@@ -14,9 +14,10 @@ public class ImplementacionDeRepositorioTest {
 	private static final Integer CODIGO = 1;
 	private static final String NOMBRE = "prueba";
 	private static final Date FECHA_CREACION = new Date();
+	private static final Date FECHA_MODIFICACION = new Date();
 	private static final boolean PUBLICO = true;
 	private static final EstadoDocumento ESTADO_DOCUMENTO = EstadoDocumento.ACTIVO;
-	private Documento documento = new Documento(CODIGO, NOMBRE, FECHA_CREACION, PUBLICO, ESTADO_DOCUMENTO);
+	private Documento documento = new Documento(CODIGO, NOMBRE, FECHA_CREACION, FECHA_MODIFICACION, PUBLICO, ESTADO_DOCUMENTO);
 	private ImplementacionDeRepositorio repositorio;
 
 	@Before
@@ -33,7 +34,7 @@ public class ImplementacionDeRepositorioTest {
 	@Test
 	public void modificarDocumento() {
 		repositorio.getDocumentos().add(documento);
-		Documento documento2 = new Documento(CODIGO, "documento2", FECHA_CREACION, PUBLICO, ESTADO_DOCUMENTO);
+		Documento documento2 = new Documento(CODIGO, "documento2", FECHA_CREACION, FECHA_MODIFICACION,PUBLICO, ESTADO_DOCUMENTO);
 		repositorio.modificarDocumento(documento2);
 		assertEquals(documento, documento2);
 	}

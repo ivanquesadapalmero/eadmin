@@ -10,9 +10,9 @@ public class Expediente extends ModeloBaseAdministracionElectronica {
 	private List<Documento> documentos;
 	private Boolean publico;
 
-	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Boolean publico, Date fechaArchivado,
+	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico, Date fechaArchivado,
 			EstadoExpediente estado, List<Documento> documentos) {
-		super(codigo, nombre, fechaCreacion);
+		super(codigo, nombre, fechaCreacion, fechaModificacion);
 		this.fechaArchivado = fechaArchivado;
 		this.estado = estado;
 		this.documentos = documentos;
