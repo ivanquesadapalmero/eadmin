@@ -45,7 +45,7 @@ public class Expediente extends ModeloBaseAdministracionElectronica {
 	public boolean equals(Object obj) {
 
 		if (obj instanceof Expediente) {
-			return codigo.equals(((Expediente) obj).getFechaArchivado())
+			return codigo.equals(((Expediente) obj).getCodigo())
 					&& nombre.equals(((Expediente) obj).getNombre())
 					&& fechaCreacion.equals(((Expediente) obj).getFechaCreacion())
 					&& fechaArchivado.equals(((Expediente) obj).getFechaArchivado())

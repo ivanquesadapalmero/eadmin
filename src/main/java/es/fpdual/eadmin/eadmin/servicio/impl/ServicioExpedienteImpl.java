@@ -4,7 +4,7 @@ import java.util.Date;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.Expediente;
-import es.fpdual.eadmin.eadmin.modelo.builder.DocumentoBuilder;
+import es.fpdual.eadmin.eadmin.modelo.builder.ExpedienteBuilder;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioExpediente;
 import es.fpdual.eadmin.eadmin.servicio.ServicioExpediente;
 
@@ -33,7 +33,7 @@ public class ServicioExpedienteImpl implements ServicioExpediente{
 
 	@Override
 	public Expediente asociarExpediente(Integer codigo, Documento documento) {
-		
+		return repositorioExpediente.asociarExpediente(codigo, documento);
 	}
 
 	@Override

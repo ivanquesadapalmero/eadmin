@@ -11,8 +11,8 @@ public interface RepositorioExpediente {
 	
 	public abstract void eliminarExpediente(Integer codigo);
 	
-	public abstract void asociarExpediente(Integer codigo, Documento documento);
+	public abstract Expediente asociarExpediente(Integer codigo, Documento documento);
 	
-	public abstract void desasociarExpediente(Integer codigo, Documento documento);
+	public abstract Expediente desasociarExpediente(Integer codigo, Documento documento);
 	
 }

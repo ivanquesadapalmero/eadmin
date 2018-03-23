@@ -8,7 +8,7 @@ import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.Expediente;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioExpediente;
 
-public class ImplementacionDeRepositorioExpediente implements RepositorioExpediente{
+public class ImplementacionDeRepositorioExpediente implements RepositorioExpediente {
 	private List<Expediente> expedientes = new ArrayList<>();
 
 	@Override
@@ -38,29 +38,38 @@ public class ImplementacionDeRepositorioExpediente implements RepositorioExpedie
 			expedientes.remove(documentoEncontrado.get());
 		}
 	}
-	
+
 	@Override
-	public void asociarExpediente(Integer codigo, Documento documento) {
-		Optional <Expediente> expedienteEncontrado = 
-				expedientes.stream().
-				filter(d -> tieneIgualCodigo(d, codigo)).
-				findFirst();
+	public Expediente asociarExpediente(Integer codigo, Documento documento) {
+		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(e -> tieneIgualCodigo(e, codigo))
+				.findFirst();
+		if (expedienteEncontrado.isPresent()) {
+
+			expedienteEncontrado.get().getDocumentos().add(documento);
+			return expedienteEncontrado.get();
+		}
+		return null;
+
 	}
 
 	@Override
-	public void desasociarExpediente(Integer codigo, Documento documento) {
-		// TODO Auto-generated method stub
-		
+	public Expediente desasociarExpediente(Integer codigo, Documento documento) {
+		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(e -> tieneIgualCodigo(e, codigo))
+				.findFirst();
+		if (expedienteEncontrado.isPresent()) {
+
+			expedienteEncontrado.get().getDocumentos().remove(documento);
+			return expedienteEncontrado.get();
+		}
+		return null;
 	}
 
 	protected boolean tieneIgualCodigo(Expediente documento, Integer codigo) {
 		return documento.getCodigo().equals(codigo);
 	}
 
-	public List<Expediente> getDocumentos() {
+	public List<Expediente> getExpedientes() {
 		return expedientes;
 	}
-
-	
 
 }
