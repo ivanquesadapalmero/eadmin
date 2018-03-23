@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class ModeloBaseAdministracionElectronica {
 
-	protected Integer codigo;
-	protected String nombre;
-	protected Date fechaCreacion;
-	protected Date fechaModificacion;
+	protected final Integer codigo;
+	protected final String nombre;
+	protected final Date fechaCreacion;
+	protected final Date fechaModificacion;
 
 	
 

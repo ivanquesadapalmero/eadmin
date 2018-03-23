@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class DocumentoContable extends Documento{
 
-	private BigDecimal importe;
-	private String dniInteresado;
+	private final BigDecimal importe;
+	private final String dniInteresado;
 	
-	public DocumentoContable(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, EstadoDocumento estado, Boolean publico, BigDecimal importe, String dniInteresado, BigDecimal codigoVerificacion) {
-		super(codigo, nombre, fechaCreacion, fechaModificacion, publico, estado, codigoVerificacion);
+	public DocumentoContable(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, EstadoDocumento estado, Boolean publico, BigDecimal importe, String dniInteresado) {
+		super(codigo, nombre, fechaCreacion, fechaModificacion, publico, estado);
 		this.importe = importe;
 		this.dniInteresado = dniInteresado;
 	}
