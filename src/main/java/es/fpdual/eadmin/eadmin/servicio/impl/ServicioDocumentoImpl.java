@@ -1,6 +1,7 @@
 package es.fpdual.eadmin.eadmin.servicio.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +23,15 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 
 	@Override
 	public Documento altaDocumento(Documento documento) {
-
-		repositorioDocumento.altaDocumento(documento);
-		return documento;
+		final Documento documentoNuevo = obtenerDocumentoConFechaCreacion(documento);
+		repositorioDocumento.altaDocumento(documentoNuevo);
+		return documentoNuevo;
 	}
 
 	@Override
 	public Documento modificarDocumento(Documento documento) {
 
-		final Documento documentoModificado = obtenerDocumentoConFechaCorrecta(documento);
+		final Documento documentoModificado = obtenerDocumentoConFechaUltimaActualizacion(documento);
 
 		repositorioDocumento.modificarDocumento(documentoModificado);
 		return documentoModificado;
@@ -41,14 +42,28 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 		repositorioDocumento.eliminarDocumento(codigo);
 	}
 
+	@Override
+	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
+		return this.repositorioDocumento.obtenerDocumentoPorCodigo(codigo);
+	}
+
+	@Override
+	public List<Documento> obtenerTodosLosDocumentos() {
+		return this.repositorioDocumento.obtenerTodosLosDocumentos();
+	}
+
 	private Date dameFechaActual() {
 		return new Date();
 	}
 
-	private Documento obtenerDocumentoConFechaCorrecta(Documento documento) {
+	protected Documento obtenerDocumentoConFechaCreacion(Documento documento) {
 
 		return new DocumentoBuilder().clonar(documento).conFechaCreacion(dameFechaActual()).construir();
 
+	}
+	
+	protected Documento obtenerDocumentoConFechaUltimaActualizacion(Documento documento) {
+		return new DocumentoBuilder().clonar(documento).conFechaModificacion(dameFechaActual()).construir();
 	}
 
 }

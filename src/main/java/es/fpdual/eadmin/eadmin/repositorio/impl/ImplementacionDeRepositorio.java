@@ -33,14 +33,28 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 	@Override
 	public void eliminarDocumento(Integer codigo) {
 
-		Optional <Documento> documentoEncontrado = 
-				documentos.stream().
-				filter(d -> tieneIgualCodigo(d, codigo)).
-				findFirst();
+		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
+				.findFirst();
 
 		if (documentoEncontrado.isPresent()) {
 			documentos.remove(documentoEncontrado.get());
 		}
+	}
+
+	@Override
+	public List<Documento> obtenerTodosLosDocumentos() {
+		return getDocumentos();
+	}
+
+	@Override
+	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
+		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
+				.findFirst(); 
+		
+		if (documentoEncontrado.isPresent()) {
+			return documentoEncontrado.get();
+		}
+		return null;
 	}
 
 	protected boolean tieneIgualCodigo(Documento documento, Integer codigo) {

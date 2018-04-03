@@ -45,4 +45,19 @@ public class ImplementacionDeRepositorioTest {
 		repositorio.eliminarDocumento(documento.getCodigo());
 		assertTrue(repositorio.getDocumentos().isEmpty());
 	}
+	
+	@Test
+	public void testObtenerDocumentoPorCodigo() {
+
+		this.repositorio.getDocumentos().add(documento);
+		final Documento documentoResultado = repositorio.obtenerDocumentoPorCodigo(CODIGO);
+		final Documento documentoResultado2 = repositorio.obtenerDocumentoPorCodigo(2);
+		assertEquals(documentoResultado, documento);
+		assertEquals(documentoResultado2, null);
+	}
+	
+	@Test
+	public void testObtenerTodosLosDocumentos() {
+		assertEquals(this.repositorio.obtenerTodosLosDocumentos(), this.repositorio.getDocumentos());
+	}
 }

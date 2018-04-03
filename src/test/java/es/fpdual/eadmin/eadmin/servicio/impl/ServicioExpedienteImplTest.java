@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
-import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
+import es.fpdual.eadmin.eadmin.servicio.ServicioExpediente;
 
 public class ServicioExpedienteImplTest {
 	private ServicioExpediente servicioExpediente;
@@ -48,7 +48,7 @@ public class ServicioExpedienteImplTest {
 	@Test
 	public void deberiaModificarUnDocumento() {
 		this.servicioDocumento.modificarDocumento(DOCUMENTO);
-		
+
 		verify(this.repositorioDocumento).modificarDocumento(DOCUMENTO);
 	}
 

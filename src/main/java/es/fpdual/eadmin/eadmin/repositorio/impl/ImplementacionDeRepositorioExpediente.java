@@ -31,11 +31,11 @@ public class ImplementacionDeRepositorioExpediente implements RepositorioExpedie
 	@Override
 	public void eliminarExpediente(Integer codigo) {
 
-		Optional<Expediente> documentoEncontrado = expedientes.stream().filter(d -> tieneIgualCodigo(d, codigo))
+		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(d -> tieneIgualCodigo(d, codigo))
 				.findFirst();
 
-		if (documentoEncontrado.isPresent()) {
-			expedientes.remove(documentoEncontrado.get());
+		if (expedienteEncontrado.isPresent()) {
+			expedientes.remove(expedienteEncontrado.get());
 		}
 	}
 
@@ -63,7 +63,24 @@ public class ImplementacionDeRepositorioExpediente implements RepositorioExpedie
 		}
 		return null;
 	}
+	
+	@Override
+	public Expediente obtenerExpedientePorCodigo(Integer codigo) {
+		Optional<Expediente> expedienteEncontrado = expedientes.stream().filter(d -> tieneIgualCodigo(d, codigo))
+				.findFirst();
 
+		if (expedienteEncontrado.isPresent()) {
+			return expedienteEncontrado.get();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public List<Expediente> obtenerTodosLosExpedientes(){
+		return getExpedientes();
+	}
+	
 	protected boolean tieneIgualCodigo(Expediente documento, Integer codigo) {
 		return documento.getCodigo().equals(codigo);
 	}
