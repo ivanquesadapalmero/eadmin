@@ -13,21 +13,21 @@ import org.junit.Before;
 import org.junit.Test;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
-import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
+import es.fpdual.eadmin.eadmin.modelo.Expediente;
+import es.fpdual.eadmin.eadmin.repositorio.RepositorioExpediente;
 import es.fpdual.eadmin.eadmin.servicio.ServicioExpediente;
 
 public class ServicioExpedienteImplTest {
 	private ServicioExpediente servicioExpediente;
 
-	private final Documento DOCUMENTO = mock(Documento.class);
-	private final Documento DOCUMENTO2 = mock(Documento.class);
+	private final Expediente EXPEDIENTE = mock(Expediente.class);
 
-	private final RepositorioDocumento repositorioDocumento = mock(RepositorioDocumento.class);
+	private final RepositorioExpediente repositorioExpediente = mock(RepositorioExpediente.class);
 
 	@Before
 	public void antesDeIniciarTest() {
 
-		this.servicioDocumento = new ServicioDocumentoImpl(repositorioDocumento);
+		this.servicioExpediente = new ServicioExpedienteImpl(repositorioExpediente);
 	}
 
 	@Test

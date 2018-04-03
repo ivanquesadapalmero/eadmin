@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
+
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
@@ -19,6 +20,7 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 			throw new IllegalArgumentException("El documento ya existe");
 		}
 		documentos.add(documento);
+		System.out.println("Documento dado de alta");
 	}
 
 	@Override
@@ -49,8 +51,8 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 	@Override
 	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
 		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
-				.findFirst(); 
-		
+				.findFirst();
+
 		if (documentoEncontrado.isPresent()) {
 			return documentoEncontrado.get();
 		}
