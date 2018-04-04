@@ -26,6 +26,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 		final Documento documentoNuevo = obtenerDocumentoConFechaCreacion(documento);
 		repositorioDocumento.altaDocumento(documentoNuevo);
 		return documentoNuevo;
+
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 		return new DocumentoBuilder().clonar(documento).conFechaCreacion(dameFechaActual()).construir();
 
 	}
-	
+
 	protected Documento obtenerDocumentoConFechaUltimaActualizacion(Documento documento) {
 		return new DocumentoBuilder().clonar(documento).conFechaModificacion(dameFechaActual()).construir();
 	}

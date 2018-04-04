@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +37,7 @@ public class EadminControlador {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping(value = "/eadmin/documentos/eliminar/{codigo}")
+	@GetMapping(value = "/eadmin/documentos/eliminar/{codigo}")
 	public ResponseEntity<?> eliminarDocumento(@PathVariable("codigo") Integer codigo) {
 		this.servicioDocumento.eliminarDocumento(codigo);
 		return new ResponseEntity<>(HttpStatus.OK);
