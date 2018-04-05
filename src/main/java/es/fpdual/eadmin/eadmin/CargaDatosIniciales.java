@@ -32,7 +32,23 @@ public class CargaDatosIniciales implements ApplicationRunner {
 				.altaDocumento(new Documento(2, "documento2", FECHA, FECHA, false, EstadoDocumento.APROBADO));
 		this.repositorioDocumento
 				.altaDocumento(new Documento(3, "documento3", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+		this.repositorioDocumento
+				.altaDocumento(new Documento(4, "documento4", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
+		this.repositorioDocumento
+				.altaDocumento(new Documento(5, "documento5", FECHA, FECHA, false, EstadoDocumento.ELIMINADO));
 
+		this.repositorioDocumento.escribirListaEnFichero();
+		
+		this.repositorioDocumento.modificarDocumento(new Documento(2, "nombre2", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
+		this.repositorioDocumento.modificarDocumento(new Documento(4, "nombre4", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+		
+		this.repositorioDocumento.escribirListaEnFichero();
+		
+		this.repositorioDocumento.eliminarDocumento(1);
+		this.repositorioDocumento.eliminarDocumento(3);
+		this.repositorioDocumento.eliminarDocumento(5);
+		
+		this.repositorioDocumento.escribirListaEnFichero();
 	}
 
 }

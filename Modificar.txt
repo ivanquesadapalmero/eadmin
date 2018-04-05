@@ -1,0 +1,42 @@
+**********Documento 2************
+Nombre: nombre2
+Fecha Creación: Thu Apr 05 13:45:07 CEST 2018
+Fecha Modificación: Thu Apr 05 13:45:07 CEST 2018
+Estado: ACTIVO
+Publico: true
+*********************************************
+**********Documento 4************
+Nombre: nombre4
+Fecha Creación: Thu Apr 05 13:45:07 CEST 2018
+Fecha Modificación: Thu Apr 05 13:45:07 CEST 2018
+Estado: ELIMINADO
+Publico: true
+*********************************************
+**********Documento 2************
+Nombre: nombre2
+Fecha Creación: Thu Apr 05 13:47:10 CEST 2018
+Fecha Modificación: Thu Apr 05 13:47:10 CEST 2018
+Estado: ACTIVO
+Publico: true
+*********************************************
+**********Documento 4************
+Nombre: nombre4
+Fecha Creación: Thu Apr 05 13:47:10 CEST 2018
+Fecha Modificación: Thu Apr 05 13:47:10 CEST 2018
+Estado: ELIMINADO
+Publico: true
+*********************************************
+**********Documento 2************
+Nombre: nombre2
+Fecha Creación: Thu Apr 05 13:48:40 CEST 2018
+Fecha Modificación: Thu Apr 05 13:48:40 CEST 2018
+Estado: ACTIVO
+Publico: true
+*********************************************
+**********Documento 4************
+Nombre: nombre4
+Fecha Creación: Thu Apr 05 13:48:40 CEST 2018
+Fecha Modificación: Thu Apr 05 13:48:40 CEST 2018
+Estado: ELIMINADO
+Publico: true
+*********************************************
