@@ -21,4 +21,5 @@ public interface RepositorioExpediente {
 	
 	public abstract List<Expediente> obtenerTodosLosExpedientes();
 	
+	public abstract void escribirListaEnFichero();
 }
