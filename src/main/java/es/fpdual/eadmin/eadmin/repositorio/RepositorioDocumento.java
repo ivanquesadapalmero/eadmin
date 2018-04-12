@@ -9,12 +9,12 @@ public interface RepositorioDocumento {
 	public abstract void altaDocumento(Documento documento);
 
 	public abstract void modificarDocumento(Documento documento);
-	
+
 	public abstract void eliminarDocumento(Integer codigo);
-	
+
 	public abstract Documento obtenerDocumentoPorCodigo(Integer codigo);
-	
+
 	public abstract List<Documento> obtenerTodosLosDocumentos();
-	
-	public abstract void escribirListaEnFichero();
+
+	// public abstract void escribirListaEnFichero();
 }
