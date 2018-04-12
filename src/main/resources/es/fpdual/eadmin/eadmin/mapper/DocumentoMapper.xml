@@ -4,7 +4,32 @@
 
 	<insert id="insertarDocumeto">
 		INSERT INTO Elemento (codigo, nombre, fechaCreacion, fechaModificacion, publico, tipo,estadoDocumento)
-		VALUES(#{documento.codigo}, #{documento.nombre}, #{documento.fechaCreacion}, #{documento.fechaModificacion}, #{documento.publico}, 1, #{documento.estado.codigo})
+		VALUES(
+		#{documento.codigo}, 
+		#{documento.nombre}, 
+		#{documento.fechaCreacion}, 
+		#{documento.fechaModificacion}, 
+		#{documento.publico}, 
+		1, 
+		#{documento.estado.codigo})
 	</insert>
+	
+	<delete id="eliminarDocumento">
+		DELETE FROM Elemento WHERE codigo = #{documento.codigo}
+	</delete>
+	
+	<update id="modificarDocumento">
+		UPDATE Elemento set 
+		nombre = #{documento.nombre},
+		fechaCreacion = #{documento.fechaCreacion}, 
+		fechaModificacion = #{documento.fechaModificacion}, 
+		publico = #{documento.publico}, 
+		estadoDocumento = #{documento.estado.codigo} 
+		WHERE codigo = #{documento.codigo}
+	</update>
+	
+	<select id="seleccionarDocumento"  resultMap="">
+		SELECT * FROM Elemento WHERE codigo = #{codigo}
+	</select>
 
 </mapper>

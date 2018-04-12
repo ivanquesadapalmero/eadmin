@@ -8,4 +8,10 @@ public interface DocumentoMapper {
 
 	int insertarDocumeto(@Param("documento") Documento documento);
 
+	int eliminarDocumento(@Param("documento") Documento documento);
+
+	int modificarDocumento(@Param("documento") Documento documento);
+
+	Documento seleccionarDocumento(@Param("codigo") int codigo);
+
 }
