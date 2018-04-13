@@ -61,7 +61,7 @@ public class ImplementacionDeRepositorioExpedienteTest {
 
 	@Test
 	public void testAsociarDocumentoAExpediente() {
-		Documento documento = new Documento(1, "NombreDoc", new Date(), new Date(), true, EstadoDocumento.ACTIVO);
+		Documento documento = new Documento(1, "NombreDoc", new Date(), new Date(), EstadoDocumento.ACTIVO, true);
 		repositorio.getExpedientes().add(expediente);
 		repositorio.asociarExpediente(expediente.getCodigo(), documento);
 		assertFalse(expediente.getDocumentos().isEmpty());
@@ -70,7 +70,7 @@ public class ImplementacionDeRepositorioExpedienteTest {
 
 	@Test
 	public void testDesasociarDocumentoAExpediente() {
-		Documento documento = new Documento(1, "NombreDoc", new Date(), new Date(), true, EstadoDocumento.ACTIVO);
+		Documento documento = new Documento(1, "NombreDoc", new Date(), new Date(), EstadoDocumento.ACTIVO, true);
 		expediente.getDocumentos().add(documento);
 		repositorio.getExpedientes().add(expediente);
 		repositorio.desasociarExpediente(expediente.getCodigo(), documento);

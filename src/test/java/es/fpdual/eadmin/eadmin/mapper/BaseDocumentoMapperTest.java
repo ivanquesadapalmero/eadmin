@@ -1,7 +1,6 @@
 package es.fpdual.eadmin.eadmin.mapper;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
@@ -26,24 +25,25 @@ public abstract class BaseDocumentoMapperTest {
 	@Before
 	public void inicializarEnCadaTest() {
 		documento = new Documento(1, "documento 1", Utilidades.asDate(LocalDate.of(2015, 1, 1)),
-				Utilidades.asDate(LocalDate.of(2015, 1, 2)), true, EstadoDocumento.ACTIVO);
+				Utilidades.asDate(LocalDate.of(2015, 1, 2)), EstadoDocumento.ACTIVO, true);
 	}
 
 	@Test
 	public void deberiaInsertarUnDocumento() throws Exception {
+
 		// DECLARACION
 
 		// ENTRENAMIENTO
 
 		// EJECUCION
-		int resultado = mapper.insertarDocumeto(documento);
+		int resultado = mapper.insertarDocumento(documento);
 		// VERIFICACION
 		assertThat(resultado, is(1));
 	}
 
 	@Test
 	public void deberiaEliminarUnDocumento() {
-		this.mapper.insertarDocumeto(this.documento);
+		this.mapper.insertarDocumento(this.documento);
 
 		int resultado = this.mapper.eliminarDocumento(this.documento);
 
@@ -51,12 +51,19 @@ public abstract class BaseDocumentoMapperTest {
 	}
 
 	@Test
+	public void deberiaObtenerDocumentoPorCodigo() {
+		mapper.insertarDocumento(documento);
+		Documento resultado = mapper.seleccionarDocumento(1);
+		assertThat(resultado, is(documento));
+	}
+
+	@Test
 	public void deberiaModificarUnDocumento() {
 
 		Documento documentoActualizado = new Documento(1, "nombre", Utilidades.asDate(LocalDate.of(2016, 1, 1)),
-				Utilidades.asDate(LocalDate.of(2016, 7, 2)), true, EstadoDocumento.ACTIVO);
+				Utilidades.asDate(LocalDate.of(2016, 7, 2)), EstadoDocumento.ACTIVO, true);
 
-		mapper.insertarDocumeto(documento);
+		mapper.insertarDocumento(documento);
 
 		int resultado = mapper.modificarDocumento(documentoActualizado);
 
@@ -66,10 +73,4 @@ public abstract class BaseDocumentoMapperTest {
 
 	}
 
-	@Test
-	public void deberiaObtenerDocumentoPorCodigo() {
-		mapper.insertarDocumeto(documento);
-		Documento resultado = mapper.seleccionarDocumento(1);
-		assertSame(resultado, documento);
-	}
 }

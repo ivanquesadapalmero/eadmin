@@ -22,8 +22,8 @@ public class EadminControladorTest {
 
 	private EadminControlador controlador;
 	private ServicioDocumento servicioDocumento = mock(ServicioDocumento.class);
-	private final Documento DOCUMENTO = new Documento(1, "nombre", new Date(), new Date(), true,
-			EstadoDocumento.ACTIVO);
+	private final Documento DOCUMENTO = new Documento(1, "nombre", new Date(), new Date(), EstadoDocumento.ACTIVO,
+			true);
 
 	@Before
 	public void antesDeIniciarElTest() {

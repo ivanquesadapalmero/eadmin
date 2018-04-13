@@ -6,7 +6,7 @@ import es.fpdual.eadmin.eadmin.modelo.Documento;
 
 public interface DocumentoMapper {
 
-	int insertarDocumeto(@Param("documento") Documento documento);
+	int insertarDocumento(@Param("documento") Documento documento);
 
 	int eliminarDocumento(@Param("documento") Documento documento);
 

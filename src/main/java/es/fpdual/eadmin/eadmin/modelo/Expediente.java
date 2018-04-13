@@ -1,7 +1,7 @@
 package es.fpdual.eadmin.eadmin.modelo;
 
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 public class Expediente extends ModeloBaseAdministracionElectronica {
 
@@ -10,9 +10,9 @@ public class Expediente extends ModeloBaseAdministracionElectronica {
 	private final List<Documento> documentos;
 	private final Boolean publico;
 
-	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico, Date fechaArchivado,
-			EstadoExpediente estado, List<Documento> documentos) {
-		super(codigo, nombre, fechaCreacion, fechaModificacion);
+	public Expediente(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico,
+			Date fechaArchivado, EstadoExpediente estado, List<Documento> documentos) {
+		super(codigo, nombre, fechaCreacion, fechaModificacion, publico);
 		this.fechaArchivado = fechaArchivado;
 		this.estado = estado;
 		this.documentos = documentos;
@@ -45,8 +45,7 @@ public class Expediente extends ModeloBaseAdministracionElectronica {
 	public boolean equals(Object obj) {
 
 		if (obj instanceof Expediente) {
-			return codigo.equals(((Expediente) obj).getCodigo())
-					&& nombre.equals(((Expediente) obj).getNombre())
+			return codigo.equals(((Expediente) obj).getCodigo()) && nombre.equals(((Expediente) obj).getNombre())
 					&& fechaCreacion.equals(((Expediente) obj).getFechaCreacion())
 					&& fechaArchivado.equals(((Expediente) obj).getFechaArchivado())
 					&& estado.equals(((Expediente) obj).getEstado())

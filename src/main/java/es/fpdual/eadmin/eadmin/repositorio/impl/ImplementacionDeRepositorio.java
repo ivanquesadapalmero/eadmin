@@ -2,103 +2,85 @@ package es.fpdual.eadmin.eadmin.repositorio.impl;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.fpdual.eadmin.eadmin.mapper.DocumentoMapper;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 @Repository
 public class ImplementacionDeRepositorio implements RepositorioDocumento {
 
-	private List<Documento> documentos = new ArrayList<>();
+	private DocumentoMapper mapper;
+
 	private static Logger logger = LoggerFactory.getLogger(ImplementacionDeRepositorio.class);
 
 	FileWriter file = null;
 	PrintWriter pw = null;
 
+	@Autowired
+	public ImplementacionDeRepositorio(DocumentoMapper mapper) {
+		this.mapper = mapper;
+	}
+
 	@Override
 	public void altaDocumento(Documento documento) {
 		logger.info("Entrando en método altaDocumento()");
-		if (documentos.contains(documento)) {
-			throw new IllegalArgumentException("El documento ya existe");
-		}
 
-		documentos.add(documento);
+		mapper.insertarDocumento(documento);
 		logger.info(documento.toString() + " creado correctamente");
 	}
 
 	@Override
 	public void modificarDocumento(Documento documento) {
 		logger.info("Entro en modificarDocumento()");
-		if (!documentos.contains(documento)) {
-			throw new IllegalArgumentException("El documento no existe");
-		}
 
-		documentos.set(documentos.indexOf(documento), documento);
+		mapper.modificarDocumento(documento);
+
 		logger.info("Salgo de modificarDocumento()");
 	}
 
 	@Override
-	public void eliminarDocumento(Integer codigo) {
+	public void eliminarDocumento(Documento documento) {
 
 		logger.info("Entro en eliminarDocumento()");
 
-		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
-				.findFirst();
-
-		if (documentoEncontrado.isPresent()) {
-			documentos.remove(documentoEncontrado.get());
-		}
+		mapper.eliminarDocumento(documento);
 
 		logger.info("Salgo de eliminarDocumento()");
 	}
 
-	@Override
-	public List<Documento> obtenerTodosLosDocumentos() {
-
-		logger.info("Entro en obtenerTodosLosDocumento()");
-
-		for (Documento doc : documentos) {
-			logger.info("************");
-			logger.info("Documento: " + doc.getCodigo());
-			logger.info("Nombre: " + doc.getNombre());
-			logger.info("Fecha Creación: " + doc.getFechaCreacion());
-			logger.info("Fecha Modificación: " + doc.getFechaModificacion());
-			logger.info("Estado: " + doc.getEstado());
-			logger.info("Publico: " + doc.getPublico());
-			logger.info("************");
-		}
-		logger.info("Salgo de obtenerTodosLosDocumentos()");
-		return getDocumentos();
-	}
+	// @Override
+	// public List<Documento> obtenerTodosLosDocumentos() {
+	//
+	// logger.info("Entro en obtenerTodosLosDocumento()");
+	//
+	// for (Documento doc : documentos) {
+	// logger.info("************");
+	// logger.info("Documento: " + doc.getCodigo());
+	// logger.info("Nombre: " + doc.getNombre());
+	// logger.info("Fecha Creación: " + doc.getFechaCreacion());
+	// logger.info("Fecha Modificación: " + doc.getFechaModificacion());
+	// logger.info("Estado: " + doc.getEstado());
+	// logger.info("Publico: " + doc.getPublico());
+	// logger.info("************");
+	// }
+	// logger.info("Salgo de obtenerTodosLosDocumentos()");
+	// return getDocumentos();
+	// }
 
 	@Override
 	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
 		logger.info("Entro en obtenerDocumentoPorCodigo()");
-		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
-				.findFirst();
 
-		if (documentoEncontrado.isPresent()) {
-			logger.info("salgo en obtenerDocumentoPorCodigo()");
-			return documentoEncontrado.get();
-		}
-		logger.info("Salgo en obtenerDocumentoPorCodigo()");
-		return null;
+		return mapper.seleccionarDocumento(codigo);
+
 	}
 
-	public List<Documento> getDocumentos() {
-		return documentos;
-	}
-
-	protected boolean tieneIgualCodigo(Documento documento, Integer codigo) {
-		return documento.getCodigo().equals(codigo);
-	}
 }
 // @Override
 // public void escribirListaEnFichero() {

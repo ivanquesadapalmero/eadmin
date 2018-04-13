@@ -1,6 +1,9 @@
 package es.fpdual.eadmin.eadmin.repositorio.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
 import org.junit.Before;
@@ -17,7 +20,8 @@ public class ImplementacionDeRepositorioTest {
 	private static final Date FECHA_MODIFICACION = new Date();
 	private static final boolean PUBLICO = true;
 	private static final EstadoDocumento ESTADO_DOCUMENTO = EstadoDocumento.ACTIVO;
-	private Documento documento = new Documento(CODIGO, NOMBRE, FECHA_CREACION, FECHA_MODIFICACION, PUBLICO, ESTADO_DOCUMENTO);
+	private Documento documento = new Documento(CODIGO, NOMBRE, FECHA_CREACION, FECHA_MODIFICACION, ESTADO_DOCUMENTO,
+			PUBLICO);
 	private ImplementacionDeRepositorio repositorio;
 
 	@Before
@@ -34,7 +38,8 @@ public class ImplementacionDeRepositorioTest {
 	@Test
 	public void modificarDocumento() {
 		repositorio.getDocumentos().add(documento);
-		Documento documento2 = new Documento(CODIGO, "documento2", FECHA_CREACION, FECHA_MODIFICACION,PUBLICO, ESTADO_DOCUMENTO);
+		Documento documento2 = new Documento(CODIGO, "documento2", FECHA_CREACION, FECHA_MODIFICACION, ESTADO_DOCUMENTO,
+				PUBLICO);
 		repositorio.modificarDocumento(documento2);
 		assertEquals(documento, documento2);
 	}
@@ -45,7 +50,7 @@ public class ImplementacionDeRepositorioTest {
 		repositorio.eliminarDocumento(documento.getCodigo());
 		assertTrue(repositorio.getDocumentos().isEmpty());
 	}
-	
+
 	@Test
 	public void testObtenerDocumentoPorCodigo() {
 
@@ -55,7 +60,7 @@ public class ImplementacionDeRepositorioTest {
 		assertEquals(documentoResultado, documento);
 		assertEquals(documentoResultado2, null);
 	}
-	
+
 	@Test
 	public void testObtenerTodosLosDocumentos() {
 		assertEquals(this.repositorio.obtenerTodosLosDocumentos(), this.repositorio.getDocumentos());

@@ -7,9 +7,9 @@ public class DocumentoRegistro extends Documento {
 	private final String dniInteresado;
 	private final String codigoRegistro;
 
-	public DocumentoRegistro(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico, EstadoDocumento estado,
-			String dniInteresado, String codigoRegistro) {
-		super(codigo, nombre, fechaCreacion, fechaModificacion,publico, estado);
+	public DocumentoRegistro(Integer codigo, String nombre, Date fechaCreacion, Date fechaModificacion, Boolean publico,
+			EstadoDocumento estado, String dniInteresado, String codigoRegistro) {
+		super(codigo, nombre, fechaCreacion, fechaModificacion, estado, publico);
 		this.dniInteresado = dniInteresado;
 		this.codigoRegistro = codigoRegistro;
 	}
@@ -21,8 +21,6 @@ public class DocumentoRegistro extends Documento {
 	public String getCodigoRegistro() {
 		return codigoRegistro;
 	}
-	
-	
 
 	@Override
 	public String toString() {

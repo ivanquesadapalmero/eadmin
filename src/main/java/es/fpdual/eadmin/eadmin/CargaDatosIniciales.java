@@ -31,23 +31,23 @@ public class CargaDatosIniciales implements ApplicationRunner {
 		// this.repositorioDocumento.escribeLista();
 		//
 		this.repositorioDocumento
-				.altaDocumento(new Documento(1, "documento1", FECHA, FECHA, true, EstadoDocumento.ACTIVO));
+				.altaDocumento(new Documento(1, "documento1", FECHA, FECHA, EstadoDocumento.ACTIVO, true));
 		this.repositorioDocumento
-				.altaDocumento(new Documento(2, "documento2", FECHA, FECHA, false, EstadoDocumento.APROBADO));
+				.altaDocumento(new Documento(2, "documento2", FECHA, FECHA, EstadoDocumento.APROBADO, false));
 		this.repositorioDocumento
-				.altaDocumento(new Documento(3, "documento3", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+				.altaDocumento(new Documento(3, "documento3", FECHA, FECHA, EstadoDocumento.ELIMINADO, true));
 		this.repositorioDocumento
-				.altaDocumento(new Documento(4, "documento4", FECHA, FECHA, false, EstadoDocumento.ACTIVO));
+				.altaDocumento(new Documento(4, "documento4", FECHA, FECHA, EstadoDocumento.ACTIVO, false));
 		this.repositorioDocumento
-				.altaDocumento(new Documento(5, "documento5", FECHA, FECHA, true, EstadoDocumento.ELIMINADO));
+				.altaDocumento(new Documento(5, "documento5", FECHA, FECHA, EstadoDocumento.ELIMINADO, true));
 
 		//
 		// this.repositorioDocumento.escribeLista();
 
 		this.repositorioDocumento.modificarDocumento(new Documento(2, "documento7", new Date(23 / 6 / 2012),
-				new Date(12 / 7 / 2010), true, EstadoDocumento.APROBADO));
+				new Date(12 / 7 / 2010), EstadoDocumento.APROBADO, true));
 		this.repositorioDocumento.modificarDocumento(new Documento(4, "documento9", new Date(13 / 1 / 2013),
-				new Date(2 / 9 / 2015), true, EstadoDocumento.ELIMINADO));
+				new Date(2 / 9 / 2015), EstadoDocumento.ELIMINADO, true));
 
 		// this.repositorioDocumento.escribeLista();
 		//
