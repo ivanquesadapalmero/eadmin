@@ -2,6 +2,7 @@ package es.fpdual.eadmin.eadmin.repositorio.impl;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import es.fpdual.eadmin.eadmin.mapper.DocumentoMapper;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
+import es.fpdual.eadmin.eadmin.modelo.builder.DocumentoBuilder;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 @Repository
@@ -31,7 +33,11 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 	public void altaDocumento(Documento documento) {
 		logger.info("Entrando en método altaDocumento()");
 
-		mapper.insertarDocumento(documento);
+		int maximo = mapper.maximoCodigo();
+
+		Documento documento2 = new DocumentoBuilder().clonar(documento).conCodigo(maximo).construir();
+
+		this.mapper.insertarDocumento(documento2);
 		logger.info(documento.toString() + " creado correctamente");
 	}
 
@@ -39,39 +45,24 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 	public void modificarDocumento(Documento documento) {
 		logger.info("Entro en modificarDocumento()");
 
-		mapper.modificarDocumento(documento);
+		int modificado = this.mapper.modificarDocumento(documento);
+
+		if (modificado == 0) {
+			throw new IllegalArgumentException("No se encuentra el documento");
+		}
 
 		logger.info("Salgo de modificarDocumento()");
 	}
 
 	@Override
-	public void eliminarDocumento(Documento documento) {
+	public void eliminarDocumento(Integer codigo) {
 
 		logger.info("Entro en eliminarDocumento()");
 
-		mapper.eliminarDocumento(documento);
+		this.mapper.eliminarDocumento(codigo);
 
 		logger.info("Salgo de eliminarDocumento()");
 	}
-
-	// @Override
-	// public List<Documento> obtenerTodosLosDocumentos() {
-	//
-	// logger.info("Entro en obtenerTodosLosDocumento()");
-	//
-	// for (Documento doc : documentos) {
-	// logger.info("************");
-	// logger.info("Documento: " + doc.getCodigo());
-	// logger.info("Nombre: " + doc.getNombre());
-	// logger.info("Fecha Creación: " + doc.getFechaCreacion());
-	// logger.info("Fecha Modificación: " + doc.getFechaModificacion());
-	// logger.info("Estado: " + doc.getEstado());
-	// logger.info("Publico: " + doc.getPublico());
-	// logger.info("************");
-	// }
-	// logger.info("Salgo de obtenerTodosLosDocumentos()");
-	// return getDocumentos();
-	// }
 
 	@Override
 	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
@@ -81,7 +72,33 @@ public class ImplementacionDeRepositorio implements RepositorioDocumento {
 
 	}
 
+	@Override
+	public List<Documento> obtenerTodosLosDocumentos() {
+		// TODO Auto-generated method stub
+		return this.mapper.obtenerTodosLosDocumentos();
+	}
+
 }
+
+// @Override
+// public List<Documento> obtenerTodosLosDocumentos() {
+//
+// logger.info("Entro en obtenerTodosLosDocumento()");
+//
+// for (Documento doc : documentos) {
+// logger.info("************");
+// logger.info("Documento: " + doc.getCodigo());
+// logger.info("Nombre: " + doc.getNombre());
+// logger.info("Fecha Creación: " + doc.getFechaCreacion());
+// logger.info("Fecha Modificación: " + doc.getFechaModificacion());
+// logger.info("Estado: " + doc.getEstado());
+// logger.info("Publico: " + doc.getPublico());
+// logger.info("************");
+// }
+// logger.info("Salgo de obtenerTodosLosDocumentos()");
+// return getDocumentos();
+// }
+
 // @Override
 // public void escribirListaEnFichero() {
 // logger.info("Entro en ecribirListaEnFichero()");

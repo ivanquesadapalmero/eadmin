@@ -3,10 +3,13 @@
 <mapper namespace="es.fpdual.eadmin.eadmin.mapper.DocumentoMapper">
 
 	<insert id="insertarDocumento">
+	<selectKey keyProperty="id" resultType="int" order="BEFORE">
+		<include refid="maxCodigo"/>
+	</selectKey>
 		INSERT INTO Elemento (codigo, nombre, fechaCreacion,
 		fechaModificacion, publico, tipo,estadoDocumento)
 		VALUES(
-		#{documento.codigo},
+		#{id},
 		#{documento.nombre},
 		#{documento.fechaCreacion},
 		#{documento.fechaModificacion},
@@ -17,7 +20,7 @@
 
 	<delete id="eliminarDocumento">
 		DELETE FROM Elemento WHERE codigo =
-		#{documento.codigo}
+		#{codigo}
 	</delete>
 
 	<update id="modificarDocumento">
@@ -43,9 +46,26 @@
 	</resultMap>
 
 	<select id="seleccionarDocumento" resultMap="documentoResultMap">
+		<include refid="baseSelectDocumento"/> and codigo = #{codigo}
+	</select>
+	
+	<select id="obtenerTodosLosDocumentos" resultMap="documentoResultMap">
+		<include refid="baseSelectDocumento"/>
+	</select>
+	
+	<sql id="baseSelectDocumento">
 		SELECT codigo,nombre, fechaCreacion, fechaModificacion, publico, estadoDocumento 
 		FROM Elemento 
-		WHERE codigo = #{codigo}
+		WHERE Tipo = 1
+	</sql>
+	
+	<select id="maximoCodigo" resultType="Integer">
+		<include refid="maxCodigo"></include>
 	</select>
+	
+	<sql id="maxCodigo">
+		SELECT ISNULL(MAX(codigo),0) + 1
+		FROM Elemento
+	</sql>
 
 </mapper>

@@ -1,9 +1,11 @@
 package es.fpdual.eadmin.eadmin.mapper;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,7 +47,7 @@ public abstract class BaseDocumentoMapperTest {
 	public void deberiaEliminarUnDocumento() {
 		this.mapper.insertarDocumento(this.documento);
 
-		int resultado = this.mapper.eliminarDocumento(this.documento);
+		int resultado = this.mapper.eliminarDocumento(documento.getCodigo());
 
 		assertThat(resultado, is(1));
 	}
@@ -71,6 +73,26 @@ public abstract class BaseDocumentoMapperTest {
 		final Documento documentoModificado = this.mapper.seleccionarDocumento(1);
 		assertThat(documentoModificado, is(documentoActualizado));
 
+	}
+
+	@Test
+	public void deberiaObtenerTodosLosDocumentos() {
+		final Documento documento2 = new Documento(2, "documento 2", Utilidades.asDate(LocalDate.of(2015, 1, 1)),
+				Utilidades.asDate(LocalDate.of(2015, 1, 2)), EstadoDocumento.ACTIVO, true);
+
+		this.mapper.insertarDocumento(this.documento);
+		this.mapper.insertarDocumento(documento2);
+
+		final List<Documento> resultado = this.mapper.obtenerTodosLosDocumentos();
+
+		assertThat(resultado, hasSize(2));
+	}
+
+	@Test
+	public void deberiaObtener1CuandoNoHayElementosAlCalcularElMaximoCodigo() {
+
+		final int resultado = this.mapper.maximoCodigo();
+		assertThat(resultado, is(1));
 	}
 
 }

@@ -1,21 +1,26 @@
 package es.fpdual.eadmin.eadmin.servicio.impl;
 
-import org.junit.*;
-
-import es.fpdual.eadmin.eadmin.modelo.Documento;
-import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import es.fpdual.eadmin.eadmin.modelo.Documento;
+import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 public class ServicioDocumentoImplTest {
 
 	private ServicioDocumentoImpl servicioDocumento;
 	private final Documento DOCUMENTO = mock(Documento.class);
 	private final RepositorioDocumento repositorioDocumento = mock(RepositorioDocumento.class);
-	
 
 	@Before
 	public void antesDeIniciarTest() {
@@ -25,7 +30,6 @@ public class ServicioDocumentoImplTest {
 
 	@Test
 	public void deberiaDarDeAltaUnDocumento() {
-
 
 		final Documento documentoModificado = mock(Documento.class);
 		doReturn(documentoModificado).when(this.servicioDocumento).obtenerDocumentoConFechaCreacion(DOCUMENTO);
@@ -38,9 +42,10 @@ public class ServicioDocumentoImplTest {
 	@Test
 	public void deberiaModificarUnDocumento() {
 		final Documento documentoModificado = mock(Documento.class);
-		
-		doReturn(documentoModificado).when(this.servicioDocumento).obtenerDocumentoConFechaUltimaActualizacion(DOCUMENTO);
-		
+
+		doReturn(documentoModificado).when(this.servicioDocumento)
+				.obtenerDocumentoConFechaUltimaActualizacion(DOCUMENTO);
+
 		final Documento resultado = this.servicioDocumento.modificarDocumento(DOCUMENTO);
 
 		verify(this.repositorioDocumento).modificarDocumento(documentoModificado);
@@ -52,9 +57,9 @@ public class ServicioDocumentoImplTest {
 
 		when(DOCUMENTO.getCodigo()).thenReturn(1);
 		this.servicioDocumento.eliminarDocumento(DOCUMENTO.getCodigo());
-		verify(this.repositorioDocumento).eliminarDocumento(1);
+		verify(this.repositorioDocumento).eliminarDocumento(DOCUMENTO.getCodigo());
 	}
-	
+
 	@Test
 	public void testObtenerDocumentoPorCodigo() {
 		when(DOCUMENTO.getCodigo()).thenReturn(1);
@@ -62,13 +67,13 @@ public class ServicioDocumentoImplTest {
 		final Documento resultado = servicioDocumento.obtenerDocumentoPorCodigo(1);
 		assertSame(resultado, DOCUMENTO);
 	}
-	
+
 	@Test
 	public void testObtenerTodosLosDocumentos() {
 		List<Documento> lista = new ArrayList<>();
 		when(repositorioDocumento.obtenerTodosLosDocumentos()).thenReturn(lista);
 		final List<Documento> resultado = servicioDocumento.obtenerTodosLosDocumentos();
-		
+
 		assertSame(repositorioDocumento.obtenerTodosLosDocumentos(), resultado);
 	}
 }
